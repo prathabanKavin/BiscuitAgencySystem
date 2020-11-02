@@ -2,7 +2,6 @@ import React from 'react'
 import Product from '../components/Product'
 import products from '../products'
 import { Row, Col } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
 
 const HomeScreen = () => {
     return (
