@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const products = require('./data/products');
 
-dotenv.config()
+require('dotenv').config();
 
 //database connection
 connectDB()
