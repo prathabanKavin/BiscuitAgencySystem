@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Super Cream Cracker 125g',
     image: '/images/SuperCreamCracker125g.jpg',
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'Super Cream Cracker 190g',
     image: '/images/SuperCreamCracker190g.jpg',
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: 'Super Cream Cracker 500g',
     image: '/images/SuperCreamCracker500g.jpg',
     description:
@@ -39,7 +36,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '4',
     name: 'Super Cream cracker  85g',
     image: '/images/SuperCreamCracker85g.jpg',
     description:
@@ -52,7 +48,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '5',
     name: 'SCC Handy Pack 230g',
     image: '/images/SCCHandyPack230g.jpg',
     description:
@@ -65,7 +60,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: '6',
     name: 'SCC Handy Pack 330g',
     image: '/images/SCCHandyPack330g.jpg',
     description:
@@ -78,7 +72,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '7',
     name: 'Cheese Cracker 100g',
     image: '/images/CheeseCracker100g.jpg',
     description:
@@ -91,7 +84,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '8',
     name: 'Sun Cracker Salt&Pepper 95g',
     image: '/images/SunCrackerSalt&Pepper95g.png',
     description:
@@ -104,7 +96,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '9',
     name: 'Cheese Cracker 200g',
     image: '/images/CheeseCracker200g.jpg',
     description:
@@ -117,7 +108,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '10',
     name: 'Sun Cracker 95g',
     image: '/images/SunCracker95g.png',
     description:
