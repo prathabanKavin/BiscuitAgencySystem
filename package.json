@@ -11,7 +11,6 @@
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d"
   },
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/prathabanKavin/BiscuitAgencySystem.git"
@@ -26,6 +25,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "mongoose": "^5.10.11"
   },
   "devDependencies": {
