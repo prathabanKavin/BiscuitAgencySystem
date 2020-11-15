@@ -3,9 +3,7 @@ import {
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
     PRODUCT_LIST_FAIL
-} from '../actions/productActions'
-
-
+} from '../constants/productConstants'
 
 export const listProducts = () => async (dispatch) => {
 
@@ -25,12 +23,6 @@ export const listProducts = () => async (dispatch) => {
                 error.response && error.response.data.message
                     ? error.response.data.message
                     : error.message,
-
-
-        }
-
-        )
-
+        })
     }
-
 }
