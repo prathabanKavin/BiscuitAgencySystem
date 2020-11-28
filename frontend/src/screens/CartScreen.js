@@ -2,7 +2,7 @@ import React ,{useEffect} from 'react'
 import {useDispatch , useSelector} from 'react-redux'
 import Message from '../components/Message'
 import { Link } from "react-router-dom"
-import {Row ,Col , ListGroup , Image , Form , Button , Card, ListGroupItem } from 'react-bootstrap'
+import {Row ,Col , ListGroup , Image , Form , Button , Card} from 'react-bootstrap'
 import {addToCart} from '../actions/cartActions'
 
 const CartScreen = ({match ,location,history}) => {
@@ -32,12 +32,12 @@ const CartScreen = ({match ,location,history}) => {
      
     return (
        <Row>
-           <col md={8}>
+           <Col md={8}>
                     <h1>Shopping Cart</h1> 
                     {cartItems.length === 0 ? (
-                        <message>
+                        <Message>
                             Your cart is empty<link to='/'>Go Back</link>
-                        </message>
+                        </Message>
                     ) : (
                         <ListGroup variant='flush'>
                             {cartItems.map(item => (
@@ -71,9 +71,9 @@ const CartScreen = ({match ,location,history}) => {
                             ))}
                         </ListGroup>
                     )}              
-           </col>
-           <col md={4}>
-               <card>
+           </Col>
+           <Col md={4}>
+               <Card>
                    <ListGroup variant='flush'>
                        <ListGroup.Item>
                            <h2>Subtotal({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items </h2>
@@ -90,8 +90,8 @@ const CartScreen = ({match ,location,history}) => {
                              </Button>
                        </ListGroup.Item>
                    </ListGroup>
-               </card>
-           </col>
+               </Card>
+           </Col>
        </Row>
     )
 }
