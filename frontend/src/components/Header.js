@@ -2,7 +2,7 @@ import React from 'react'
 import {useDispatch, useSelector } from 'react-redux'
 import {Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
-import { logout } from '../action/userActions'
+import { logout } from '../actions/userActions'
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -29,9 +29,13 @@ const Header = () => {
                         {userInfo ? (
                            <NavDropdown title={userInfo.name} id='username'>
                                <LinkContainer to='/profile'>
-                                   <NavDropdown.Item>Profile</NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <i className='fas fa-user'></i>  Profile
+                                    </NavDropdown.Item>
                                </LinkContainer>
-                               <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+                               <NavDropdown.Item onClick={logoutHandler}>
+                                    Logout
+                                </NavDropdown.Item>
                            </NavDropdown>
                         ) :  <LinkContainer to='/login'>
                         <Nav.Link>
