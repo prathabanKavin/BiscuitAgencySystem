@@ -19,7 +19,6 @@ function App() {
           <Route path='/product/:id' component={ProductScreen}/>
           <Route path='/cart/:id?' component={CartScreen}/> 
           <Route path='/' component={HomeScreen} exact/>
-
         </Container>
       </main>
       <Footer/>

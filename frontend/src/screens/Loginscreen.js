@@ -16,11 +16,11 @@ const LoginScreen = ({location,history}) => {
     const dispatch = useDispatch()
 
     const userLogin = useSelector(state => state.userLogin)
-    const {loading, error ,useInfo} = userLogin
+    const {loading, error ,userInfo} = userLogin
     const redirect = location.search ? location.search.split('=')[1] :'/'
 
     useEffect(() =>{
-        if(useInfo)
+        if(userInfo)
         {
             history.push(redirect)
         }
@@ -43,17 +43,17 @@ const LoginScreen = ({location,history}) => {
                 <Form.Control type='email' 
                   placeholder='Enter email'
                   value={email}
-		          onchange={(e) => setEmail(e.target.value)}
+		          onChange={(e) => setEmail(e.target.value)}
                  ></Form.Control>
                </Form.Group>
                
                
                <Form.Group controlId='password'>
-               <Form.Label>Password Address</Form.Label>
+               <Form.Label>Password</Form.Label>
                 <Form.Control type='password' 
                   placeholder='Enter password'
                   value={password}
-		          onchange={(e) => setPassword(e.target.value)}
+		          onChange={(e) => setPassword(e.target.value)}
                  ></Form.Control>
                </Form.Group>
 
@@ -62,7 +62,7 @@ const LoginScreen = ({location,history}) => {
             <Row className='py-3'>
                 <Col>
                      New customer?{' '}
-                     <Link to={redirect ? '/register?redirect=${redirect}' : '/register'}>
+                     <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
                         Register
                      </Link>
                 </Col>
