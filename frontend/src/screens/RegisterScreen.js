@@ -7,8 +7,6 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
 
-
-
 const RegisterScreen = ({ location, history }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -36,28 +34,27 @@ const RegisterScreen = ({ location, history }) => {
         }
         else {
             dispatch(register(name, email, password))
-
         }
     }
 
     return (
         <FormContainer>
             <h1>Sign Up</h1>
-            {message && <Message variant='danger'>{message} </Message>}
+            {message && <Message variant='danger'>{message}</Message>}
 
-            {error && <Message variant='danger'>{error} </Message>}
+            {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
-
 
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='name'>
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label>Name</Form.Label>
                     <Form.Control type='name'
                         placeholder='Enter name'
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
+
                 <Form.Group controlId='email'>
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control type='email'
@@ -66,7 +63,6 @@ const RegisterScreen = ({ location, history }) => {
                         onChange={(e) => setEmail(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
-
 
                 <Form.Group controlId='password'>
                     <Form.Label>Password</Form.Label>
@@ -82,7 +78,7 @@ const RegisterScreen = ({ location, history }) => {
                     <Form.Control
                         type='password'
                         placeholder='Confirm password'
-                        value={password}
+                        value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
@@ -91,7 +87,7 @@ const RegisterScreen = ({ location, history }) => {
             </Form>
             <Row className='py-3'>
                 <Col>
-                    Have an account{' '}
+                    Have an account?{' '}
                     <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
                         Log In
                      </Link>
@@ -101,8 +97,5 @@ const RegisterScreen = ({ location, history }) => {
         </FormContainer>
     )
 }
-
-
-
 
 export default RegisterScreen
