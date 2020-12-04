@@ -23,8 +23,8 @@ const Product = ({ product }) => {
                 </Card.Text>
                 <Card.Text as='h4'>LKR {product.price}</Card.Text>
             </Card.Body>
-
         </Card>
     )
 }
+
 export default Product

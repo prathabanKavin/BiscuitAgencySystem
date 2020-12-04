@@ -8,7 +8,6 @@ const userRoutes = require('./routes/userRoutes')
 
 //get config values in the config folder
 dotenv.config();
-
 //database connection
 connectDB()
 
@@ -30,7 +29,6 @@ app.use('/api/users', userRoutes)
 app.use(notFound)
 app.use(errorHandler)
 
-//port
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, console.log(`Server is running in ${process.env.NODE_ENV} on port ${PORT}`))

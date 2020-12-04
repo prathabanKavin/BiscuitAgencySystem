@@ -7,9 +7,7 @@ import { Row, Col } from 'react-bootstrap'
 import { listProducts } from '../actions/productActions'
 
 const HomeScreen = () => {
-
     const dispatch = useDispatch()
-
     const productList = useSelector(state => state.productList)
     const { loading, error, products } = productList 
 
@@ -18,7 +16,6 @@ const HomeScreen = () => {
     }, [dispatch])
 
     return (
-
         <>
             <h1>Latest Products</h1>
             {loading ? (
@@ -31,7 +28,6 @@ const HomeScreen = () => {
                         <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                             <Product product={product} />
                         </Col>
-
                     ))}
                 </Row>
             )}
