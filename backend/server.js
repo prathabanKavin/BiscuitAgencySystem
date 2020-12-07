@@ -5,6 +5,7 @@ const notFound = require('./middleware/notFound')
 const errorHandler = require('./middleware/errorHandler')
 const productRoutes = require('./routes/productRoutes')
 const userRoutes = require('./routes/userRoutes')
+const orderRoutes = require('./routes/orderRoutes')
 
 //get config values in the config folder
 dotenv.config();
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 //routes
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/orders', orderRoutes)
 
 //custom middlwares
 app.use(notFound)
