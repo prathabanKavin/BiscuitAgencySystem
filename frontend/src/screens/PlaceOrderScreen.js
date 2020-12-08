@@ -8,7 +8,6 @@ import { createOrder } from '../actions/orderActions'
 
 const PlaceOrderScreen = ({ history }) => {
     const dispatch = useDispatch()
-
     const cart = useSelector((state) => state.cart)
 
     //Calculate prices
@@ -39,7 +38,6 @@ const PlaceOrderScreen = ({ history }) => {
             paymentMethod: cart.paymentMethod,
             itemsPrice: cart.itemsPrice,
             shippingPrice: cart.shippingPrice,
-            taxPrice: cart.taxPrice,
             totalPrice: cart.totalPrice,
         }))
     }
