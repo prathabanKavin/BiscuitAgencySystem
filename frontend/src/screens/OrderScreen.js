@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import PaymentModal from '../components/PaymentModal'
 import { getOrderDetails } from '../actions/orderActions'
 
 const OrderScreen = ({ match }) => {
@@ -113,7 +114,13 @@ const OrderScreen = ({ match }) => {
                                         <Col>LKR {order.totalPrice}</Col>
                                     </Row>
                                 </ListGroup.Item>
-
+                                <ListGroup.Item>
+                                    <PaymentModal
+                                        orderId= {order._id}
+                                        name= {order.user.name}
+                                        amount= {order.totalPrice}
+                                    />
+                                </ListGroup.Item>
                             </ListGroup>
                         </Card>
                     </Col>
