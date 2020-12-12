@@ -1,12 +1,21 @@
-import React from 'react';
+import Axios from 'axios';
+import React, { useState } from 'react'
+import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
 const PaymentModal = ({ orderId, name, amount }) => {
-    
+    const [ merchant_id, setMerchant_id ] = useState('')
+
+    const getPayhereMerchantid = async () => {
+        const { data : merchant_id } = await axios.get('/api/config/payhere')
+        console.log(merchant_id)
+        setMerchant_id(`${merchant_id}`)
+    }
+    getPayhereMerchantid()
     // Put the payment variables here
     var payment = {
         sandbox: true, // if the account is sandbox or real
-        merchant_id: '1216181', // Replace your Merchant ID
+        merchant_id: merchant_id, // Replace your Merchant ID
         return_url: '/',
         cancel_url: '/',
         notify_url: 'http://sample.com/notify',

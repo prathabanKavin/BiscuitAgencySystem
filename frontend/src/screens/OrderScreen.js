@@ -117,7 +117,7 @@ const OrderScreen = ({ match }) => {
                                 <ListGroup.Item>
                                     <PaymentModal
                                         orderId= {order._id}
-                                        name= {order.user.name}
+                                        name= 'Biscuit Products'
                                         amount= {order.totalPrice}
                                     />
                                 </ListGroup.Item>
