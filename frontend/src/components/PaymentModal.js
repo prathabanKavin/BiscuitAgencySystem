@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
@@ -8,7 +7,6 @@ const PaymentModal = ({ orderId, name, amount }) => {
 
     const getPayhereMerchantid = async () => {
         const { data : merchant_id } = await axios.get('/api/config/payhere')
-        console.log(merchant_id)
         setMerchant_id(`${merchant_id}`)
     }
     getPayhereMerchantid()
