@@ -27,6 +27,11 @@ app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 
+//api to retrieve payhere merchant id
+app.get('/api/config/payhere', (req, res) =>
+    res.send(process.env.PAYHERE_MERCHANT_ID)
+)
+
 //custom middlwares
 app.use(notFound)
 app.use(errorHandler)

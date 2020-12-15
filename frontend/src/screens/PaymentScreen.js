@@ -1,5 +1,5 @@
 import React, { useState, } from 'react'
-import { Form, Button, Col } from 'react-bootstrap'
+import { Form, Button, Col, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
@@ -30,7 +30,7 @@ const PaymentScreen = ({ history }) => {
                 <Form.Group>
                     <Form.Label as='legend'>Select Method</Form.Label>
                 <Col>
-                    <Form.Check
+                    {<Form.Check
                         type='radio'
                         label='PayHere'
                         id='PayHere'
@@ -38,7 +38,16 @@ const PaymentScreen = ({ history }) => {
                         value='PayHere'
                         checked
                         onChange={(e) => setPaymentMethod(e.target.value)}>
-                    </Form.Check>
+                    </Form.Check>}
+                    <Image src='https://www.payhere.lk/downloads/images/payhere_long_banner_dark.png' alt='PayHere' width='440'/>
+                    {<Form.Check
+                        type='radio'
+                        label='Cash on Delivery'
+                        id='CashonDelivery'
+                        name='paymentMethod'
+                        value='Cash on Delivery'
+                        onChange={(e) => setPaymentMethod(e.target.value)}>
+                    </Form.Check>}
                     {/*<Form.Check
                         type='radio'
                         label='PayPal or Credit Card'

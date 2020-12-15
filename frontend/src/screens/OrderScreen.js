@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import PaymentModal from '../components/PaymentModal'
 import { getOrderDetails } from '../actions/orderActions'
 
 const OrderScreen = ({ match }) => {
     const orderId = match.params.id
+    const [ sdkReady, setSdkReady ] = useState(false)
     const dispatch = useDispatch()
+    
     const orderDetails = useSelector(state => state.orderDetails)
     const { order, loading, error } = orderDetails
     if (!loading) {
@@ -21,8 +24,19 @@ const OrderScreen = ({ match }) => {
         )
     }
     useEffect(() => {
+        const addPayhereScript = async () => {
+            const script = document.createElement('script')
+            script.type = 'text/javascript'
+            script.src = "https://www.payhere.lk/lib/payhere.js"
+            script.async = true
+            script.onload = () => {
+                setSdkReady(true)
+            }
+            document.body.appendChild(script)
+        }
+        addPayhereScript()
         dispatch(getOrderDetails(orderId))
-    }, [])
+    }, [dispatch, orderId])
 
     return loading ? <Loader /> : error ? <Message variant='danger'>{error}
         </Message> : 
@@ -113,7 +127,18 @@ const OrderScreen = ({ match }) => {
                                         <Col>LKR {order.totalPrice}</Col>
                                     </Row>
                                 </ListGroup.Item>
-
+                                <ListGroup.Item>
+                                    <PaymentModal
+                                        orderId= {order._id}
+                                        name= 'Biscuit Products'
+                                        amount= {order.totalPrice}
+                                        firstname = {order.user.name}
+                                        email = {order.user.email}
+                                        address = {order.shippingAddress.address}
+                                        city = {order.shippingAddress.city}
+                                        country = {order.shippingAddress.country}
+                                    />
+                                </ListGroup.Item>
                             </ListGroup>
                         </Card>
                     </Col>
