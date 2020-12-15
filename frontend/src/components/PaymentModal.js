@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
-const PaymentModal = ({ orderId, name, amount }) => {
+const PaymentModal = ({ orderId, name, amount, firstname, email, address, city, country }) => {
     const [ merchant_id, setMerchant_id ] = useState('')
 
     const getPayhereMerchantid = async () => {
@@ -21,18 +21,18 @@ const PaymentModal = ({ orderId, name, amount }) => {
         items: name,
         amount: amount, 
         currency: 'LKR',
-        first_name: 'Saman',
-        last_name: 'Perera',
-        email: 'samanp@gmail.com',
-        phone: '0771234567',
-        address: 'No.1, Galle Road',
-        city: 'Colombo',
-        country: 'Sri Lanka',
-        delivery_address: 'No. 46, Galle road, Kalutara South', // optional field
-        delivery_city: 'Kalutara', // optional field
-        delivery_country: 'Sri Lanka', // optional field
-        custom_1: '', // optional field
-        custom_2: '', // optional field
+        first_name: firstname,
+        last_name: '',
+        email: email,
+        phone: '',
+        address: address,
+        city: city,
+        country: country,
+        delivery_address: address, // optional field
+        delivery_city: city, // optional field
+        delivery_country: country, // optional field
+        //custom_1: '', // optional field
+        //custom_2: '', // optional field
     };
     
     // Called when user completed the payment. It can be a successful payment or failure

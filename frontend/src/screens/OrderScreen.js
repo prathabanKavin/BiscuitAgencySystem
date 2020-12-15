@@ -132,6 +132,11 @@ const OrderScreen = ({ match }) => {
                                         orderId= {order._id}
                                         name= 'Biscuit Products'
                                         amount= {order.totalPrice}
+                                        firstname = {order.user.name}
+                                        email = {order.user.email}
+                                        address = {order.shippingAddress.address}
+                                        city = {order.shippingAddress.city}
+                                        country = {order.shippingAddress.country}
                                     />
                                 </ListGroup.Item>
                             </ListGroup>
