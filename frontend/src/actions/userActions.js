@@ -102,7 +102,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         dispatch({
             type: USER_DETAILS_REQUEST,
         })
-        const {userLogin:{userInfo}} = getState()
+        const { userLogin:{userInfo} } = getState()
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         dispatch({
             type: USER_UPDATE_PROFILE_REQUEST,
         })
-        const {userLogin:{userInfo}} = getState()
+        const { userLogin:{userInfo} } = getState()
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ export const listUsers = () => async (dispatch, getState) => {
         dispatch({
             type: USER_LIST_REQUEST,
         })
-        const {userLogin:{userInfo}} = getState()
+        const { userLogin:{userInfo}  } = getState()
         const config = {
             headers: {
                 Authorization:`Bearer ${userInfo.token}`
@@ -184,7 +184,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
         dispatch({
             type: USER_DELETE_REQUEST,
         })
-        const {userLogin:{userInfo}} = getState()
+        const { userLogin:{userInfo} } = getState()
         const config = {
             headers: {
                 Authorization:`Bearer ${userInfo.token}`
@@ -192,11 +192,11 @@ export const deleteUser = (id) => async (dispatch, getState) => {
         }
         const { data } = await axios.delete(`/api/users/${id}`, config)
         dispatch({
-            type: USER_LIST_SUCCESS,
+            type: USER_DELETE_SUCCESS,
         })
     } catch (error) {
         dispatch({
-            type: USER_DELETE_FAIL ,
+            type: USER_DELETE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

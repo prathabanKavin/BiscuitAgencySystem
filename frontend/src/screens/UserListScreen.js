@@ -6,8 +6,6 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listUsers, deleteUser } from '../actions/userActions'
 
-
-
 const UserListScreen = ({ history }) => {
     const dispatch = useDispatch()
 
@@ -21,13 +19,13 @@ const UserListScreen = ({ history }) => {
     const { success: successDelete } = userDelete
 
     useEffect(() => {
-        if (userInfo && userInfo.isAdmin) {
+        if (userInfo && userInfo.isMainAdmin) {
             dispatch(listUsers())
         }
         else {
             history.push('/login')
         }
-    }, [dispatch, history, successDelete])
+    }, [dispatch, userInfo, history, successDelete])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure ')) {
@@ -39,7 +37,7 @@ const UserListScreen = ({ history }) => {
     return (
         <>
             <h1>Users</h1>
-            {loading ? <Loader /> : error ? <Message variant='danger'>(error)</Message> :
+            {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> :
                 (
                     <Table striped bordered hover responsive className='table-sm'>
                         <thead>
@@ -47,7 +45,7 @@ const UserListScreen = ({ history }) => {
                                 <th>ID</th>
                                 <th>NAME</th>
                                 <th>EMAIL</th>
-                                <th>ADMIN</th>
+                                <th>MAIN ADMIN</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -55,10 +53,10 @@ const UserListScreen = ({ history }) => {
                             {users.map(user => (
                                 <tr key={user._id}>
                                     <td>{user._id}</td>
-                                    <td>{user._name}</td>
-                                    <td><a href={`mailto:${user.email}`}>{user._email}</a></td>
+                                    <td>{user.name}</td>
+                                    <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
                                     <td>
-                                        {user.isAdmin ? (
+                                        {user.isMainAdmin ? (
                                             <i className='fas fa-check' style={{ color: 'green' }}></i>
                                         ) : (
                                                 <i className='fas fa-times' style={{ color: 'red' }}></i>
