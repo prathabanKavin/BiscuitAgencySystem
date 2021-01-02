@@ -11,11 +11,11 @@ const UserEditScreen = ({ match, history }) => {
     const userId = match.params.id
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [isAdmin, setIsAdmin] = useState(false)
+    const [isMainAdmin, setIsMainAdmin] = useState(false)
 
     const dispatch = useDispatch()
 
-    const userDetails = useSelector(state => state.userDetails)
+    const userDetails = useSelector((state) => state.userDetails)
     const { loading, error, user } = userDetails
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const UserEditScreen = ({ match, history }) => {
         }else {
             setName(user.name)
             setEmail(user.email)
-            setIsAdmin(user.isAdmin)
+            setIsMainAdmin(user.isMainAdmin)
         }
     }, [dispatch, userId, user])
 
@@ -34,9 +34,9 @@ const UserEditScreen = ({ match, history }) => {
 
     return (
         <>
-        <link to='/admin/userlist' className='btn btn-light my-3'>
+        <Link to='/admin/userlist' className='btn btn-light my-3'>
             Go Back
-        </link>
+        </Link>
         <FormContainer>
             <h1>Edit User</h1>
             {loading ? <Loader />: error ? <Message variant='danger'>{error}</Message> : (
@@ -59,11 +59,11 @@ const UserEditScreen = ({ match, history }) => {
                     ></Form.Control>
                 </Form.Group>
 
-                <Form.Group controlId='isadmin'>
+                <Form.Group controlId='isMainAdmin'>
                     <Form.Check type='checkbox'
-                        label='Is Admin'
-                        checked={isAdmin}
-                        onChange={(e) => setIsAdmin(e.target.checked)}
+                        label='Is Main Admin'
+                        checked={isMainAdmin}
+                        onChange={(e) => setIsMainAdmin(e.target.checked)}
                     ></Form.Check>
                 </Form.Group>
 
