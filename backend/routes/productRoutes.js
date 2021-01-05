@@ -4,11 +4,9 @@ const productController = require('../controllers/productController')
 const admin = require('../middleware/adminMiddleware')
 const protect = require('../middleware/authMiddleware')
 
-const { getProducts, getProductById } = productController
-
-//import {protect , admin} from '../middleware/authMiddleware.js'
+const { getProducts, getProductById, deleteProduct } = productController
 
 router.route('/').get(getProducts)
-router.route('/:id').get(getProductById).delete(protect, admin, productController.deleteProduct)
+router.route('/:id').get(getProductById).delete(protect, admin, deleteProduct)
 
 module.exports = router
