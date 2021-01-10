@@ -7,7 +7,7 @@ const admin = require('../middleware/adminMiddleware')
 const { 
     authUser, 
     registerUser, 
-    getUserProfile, 
+    getUserProfile,
     updateUserProfile,
     getUsers,
     deleteUser,

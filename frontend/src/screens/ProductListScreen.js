@@ -4,9 +4,9 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listProducts ,deleteProduct } from '../actions/productActions'
+import { listProducts, deleteProduct } from '../actions/productActions'
 
-const ProductListScreen = ({history, match }) => {
+const ProductListScreen = ({ history, match }) => {
     const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
@@ -44,13 +44,13 @@ const ProductListScreen = ({history, match }) => {
             </Col>
             <Col className='text-right'>
                 <Button className='my-3' onClick={createProductHandler}>
-                    <i className='fas fa-plus'></i>Create Product
+                    <i className='fas fa-plus'></i> Create Product
                 </Button>
             </Col>
           </Row>
-          {loadingDelete &&     <Loader/> }
+          {loadingDelete && <Loader/> }
           {errorDelete && <Message variant='Danger'>{errorDelete}</Message>}
-            {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> :
+        {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> :
                 (
                     <Table striped bordered hover responsive className='table-sm'>
                         <thead>
