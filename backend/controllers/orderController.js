@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler')
+const { populate } = require('../models/orderModel')
 const Order = require('../models/orderModel')
 
 // @desc        Create new order
@@ -79,4 +80,12 @@ const getMyOrders = asyncHandler (async (req, res) => {
     res.json(orders)
 })
 
-module.exports = {addOrderItems, getOrderById, updateOrderToPaid, getMyOrders}
+// @desc        Get all orders
+// @route       GET /api/orders
+// @access      Private/Admin
+const getOrders = asyncHandler (async (req, res) => {
+    const orders = await Order.find({}).populate('user', 'id name')
+    res.json(orders)
+})
+
+module.exports = {addOrderItems, getOrderById, updateOrderToPaid, getMyOrders, getOrders}
