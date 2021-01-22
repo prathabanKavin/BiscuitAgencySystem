@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
@@ -6,6 +7,7 @@ const errorHandler = require('./middleware/errorHandler')
 const productRoutes = require('./routes/productRoutes')
 const userRoutes = require('./routes/userRoutes')
 const orderRoutes = require('./routes/orderRoutes')
+const uploadRoutes = require('./routes/uploadRoutes')
 
 //get config values in the config folder
 dotenv.config();
@@ -26,11 +28,15 @@ app.get('/', (req, res) => {
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/upload', uploadRoutes)
 
 //api to retrieve payhere merchant id
 app.get('/api/config/payhere', (req, res) =>
     res.send(process.env.PAYHERE_MERCHANT_ID)
 )
+
+//making uploads folder static to be accessible to everyone
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 //custom middlwares
 app.use(notFound)
