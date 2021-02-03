@@ -104,4 +104,11 @@ const getOrders = asyncHandler (async (req, res) => {
     res.json(orders)
 })
 
-module.exports = {addOrderItems, getOrderById, updateOrderToPaid,updateOrderToDelivered, getMyOrders, getOrders}
+module.exports = {
+    addOrderItems, 
+    getOrderById, 
+    updateOrderToPaid,
+    updateOrderToDelivered, 
+    getMyOrders, 
+    getOrders
+}
