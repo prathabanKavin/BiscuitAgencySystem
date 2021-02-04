@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express')
 const dotenv = require('dotenv')
+const morgan = require('morgan')
 const connectDB = require('./config/db')
 const notFound = require('./middleware/notFound')
 const errorHandler = require('./middleware/errorHandler')
@@ -15,6 +16,10 @@ dotenv.config();
 connectDB()
 
 const app = express();
+
+if(process.env.NODE_ENV === 'development'){
+ app.use(morgan('dev'))
+}
 
 //json body parser middleware
 app.use(express.json())
