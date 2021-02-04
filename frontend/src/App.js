@@ -17,8 +17,11 @@ import OrderScreen from './screens/OrderScreen'
 import UserListScreen from './screens/UserListScreen'
 import UserEditScreen from './screens/UserEditScreen'
 import ProductListScreen from './screens/ProductListScreen'
+<<<<<<< HEAD
 import OrderListScreen from './screens/OrderListScreen'
+=======
 import ProductEditScreen from './screens/ProductEditScreen'
+>>>>>>> c1de8b1f860a3c89bd6ceb0735a2554a260590a8
 
 function App() {
     return (
@@ -38,8 +41,11 @@ function App() {
                         <Route path='/admin/userlist' component={UserListScreen}/> 
                         <Route path='/admin/productlist' component={ProductListScreen}/> 
                         <Route path='/admin/user/:id/edit' component={UserEditScreen}/> 
+<<<<<<< HEAD
                         <Route path='/admin/orderlist' component={OrderListScreen}/> 
+=======
                         <Route path='/admin/product/:id/edit' component={ProductEditScreen}/> 
+>>>>>>> c1de8b1f860a3c89bd6ceb0735a2554a260590a8
                         <Route path='/' component={HomeScreen} exact/>
                     </Container>
                 </main> 
