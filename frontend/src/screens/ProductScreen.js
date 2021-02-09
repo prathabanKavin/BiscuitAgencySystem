@@ -5,8 +5,8 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { listProductDetails,createProductReview } from '../actions/productActions'
-import {PRODUCT_CREATE_REVIEW_RESET} from '../constants/productConstants'
+import { listProductDetails, createProductReview } from '../actions/productActions'
+import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 const ProductScreen = ({ history, match }) => {
     const [qty, setQty] = useState(1)
@@ -22,7 +22,7 @@ const ProductScreen = ({ history, match }) => {
     const { userInfo } = userLogin
 
     const productReviewCreate = useSelector((state) => state.productReviewCreate)
-    const { success:successProductReview, error: errorProductReview } = productReviewCreate
+    const { success : successProductReview, error : errorProductReview } = productReviewCreate
 
     useEffect(() => {
         if(successProductReview){

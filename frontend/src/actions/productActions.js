@@ -146,7 +146,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     }
 }
 
-export const createProductReview = (productId,review) => async (dispatch, getState) => {
+export const createProductReview = (productId, review) => async (dispatch, getState) => {
     try {
         dispatch({
             type: PRODUCT_CREATE_REVIEW_REQUEST,
@@ -172,4 +172,3 @@ export const createProductReview = (productId,review) => async (dispatch, getSta
         })
     }
 }
-
