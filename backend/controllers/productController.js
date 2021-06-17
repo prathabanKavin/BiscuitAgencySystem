@@ -1,5 +1,4 @@
 const asyncHandler = require('express-async-handler')
-const { register } = require('../../frontend/src/actions/userActions')
 const Product = require('../models/productModel')
 
 // @desc        Fetch all products
