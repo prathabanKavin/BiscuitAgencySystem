@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -27,7 +28,7 @@ const ProductListScreen = ({ history, match }) => {
     useEffect(() => {
         dispatch({type: PRODUCT_CREATE_RESET})
 
-        if (!userInfo.isMainAdmin) {
+        if (!userInfo || !userInfo.isMainAdmin) {
             history.push('/login')
         }
     
@@ -50,6 +51,7 @@ const ProductListScreen = ({ history, match }) => {
 
     return (
         <>
+        <Link to="/" className="btn btn-light">Go Back</Link>
           <Row className='align-items-center'>
             <Col>
               <h1>Products</h1>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -36,6 +37,7 @@ const UserListScreen = ({ history }) => {
 
     return (
         <>
+        <Link to="/" className="btn btn-light">Go Back</Link>
             <h1>Users</h1>
             {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> :
                 (

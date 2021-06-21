@@ -7,12 +7,14 @@ import Loader from '../components/Loader'
 import PaymentModal from '../components/PaymentModal'
 import { getOrderDetails } from '../actions/orderActions'
 
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ match, history }) => {
     const orderId = match.params.id
     const [ sdkReady, setSdkReady ] = useState(false)
     const dispatch = useDispatch()
     
     const orderDetails = useSelector(state => state.orderDetails)
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
     const { order, loading, error } = orderDetails
     if (!loading) {
         //Calculate prices
@@ -24,6 +26,9 @@ const OrderScreen = ({ match }) => {
         )
     }
     useEffect(() => {
+        if (!userInfo) {
+            history.push('/login')
+        }
         const addPayhereScript = async () => {
             const script = document.createElement('script')
             script.type = 'text/javascript'
@@ -127,8 +132,11 @@ const OrderScreen = ({ match }) => {
                                         <Col>LKR {order.totalPrice}</Col>
                                     </Row>
                                 </ListGroup.Item>
-                                <ListGroup.Item>
-                                    <PaymentModal
+                                
+                                    {userInfo.isMainAdmin 
+                                    ? <></> 
+                                    :( <ListGroup.Item>
+                                        <PaymentModal
                                         orderId= {order._id}
                                         name= 'Biscuit Products'
                                         amount= {order.totalPrice}
@@ -138,7 +146,8 @@ const OrderScreen = ({ match }) => {
                                         city = {order.shippingAddress.city}
                                         country = {order.shippingAddress.country}
                                     />
-                                </ListGroup.Item>
+                                    </ListGroup.Item>
+                                    )}
                             </ListGroup>
                         </Card>
                     </Col>
