@@ -73,6 +73,7 @@ const ProfileScreen = ({ location, history }) => {
                         placeholder='Enter email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        readOnly
                     ></Form.Control>
                 </Form.Group>
 
