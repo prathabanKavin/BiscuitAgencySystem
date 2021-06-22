@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import PaymentModal from '../components/PaymentModal'
-import { getOrderDetails } from '../actions/orderActions'
+import { getOrderDetails, shipOrder, deliverOrder } from '../actions/orderActions'
+import { ORDER_SHIP_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants'
 
 const OrderScreen = ({ match, history }) => {
     const orderId = match.params.id
@@ -16,6 +17,12 @@ const OrderScreen = ({ match, history }) => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
     const { order, loading, error } = orderDetails
+
+    const orderShip = useSelector(state => state.orderShip)
+    const { loading: loadingShip, success: successShip } = orderShip
+
+    const orderDeliver = useSelector(state => state.orderDeliver)
+    const { loading: loadingDeliver, success: successDeliver } = orderDeliver
     if (!loading) {
         //Calculate prices
         const addDecimals = (num) => {
@@ -40,8 +47,19 @@ const OrderScreen = ({ match, history }) => {
             document.body.appendChild(script)
         }
         addPayhereScript()
-        dispatch(getOrderDetails(orderId))
-    }, [dispatch, orderId])
+        if(!order || successShip || successDeliver){
+            dispatch({ type: ORDER_SHIP_RESET })
+            dispatch({ type: ORDER_DELIVER_RESET })
+            dispatch(getOrderDetails(orderId))
+        }
+    }, [dispatch, orderId, order, successShip, successDeliver])
+
+    const shipHandler = () => {
+        dispatch(shipOrder(order))
+    }
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order))
+    }
 
     return loading ? <Loader /> : error ? <Message variant='danger'>{error}
         </Message> : 
@@ -147,6 +165,22 @@ const OrderScreen = ({ match, history }) => {
                                         country = {order.shippingAddress.country}
                                     />
                                     </ListGroup.Item>
+                                    )}
+                                    {loadingShip && <Loader/>}
+                                    {userInfo.isMainAdmin && !order.isShipped && (
+                                        <ListGroup.Item>
+                                            <Button type='button' className='btn btn-block' onClick={shipHandler}>
+                                                Mark as Shipped
+                                            </Button>
+                                        </ListGroup.Item>
+                                    )}
+                                    {loadingDeliver && <Loader/>}
+                                    {userInfo.isMainAdmin && !order.isDelivered && (
+                                        <ListGroup.Item>
+                                            <Button type='button' className='btn btn-block' onClick={deliverHandler}>
+                                                Mark as Delivered
+                                            </Button>
+                                        </ListGroup.Item>
                                     )}
                             </ListGroup>
                         </Card>

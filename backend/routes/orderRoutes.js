@@ -17,8 +17,8 @@ const {
 router.route('/').post(protect, addOrderItems).get(protect, admin, getOrders)
 router.route('/myorders').get(protect, getMyOrders)
 router.route('/:id').get(protect, getOrderById)
-router.route('/:id/pay').get(protect, updateOrderToPaid)
-router.route('/:id/ship').get(protect, admin, updateOrderToShipped)
-router.route('/:id/deliver').get(protect, admin, updateOrderToDelivered)
+router.route('/:id/pay').put(protect, updateOrderToPaid)
+router.route('/:id/ship').put(protect, admin, updateOrderToShipped)
+router.route('/:id/deliver').put(protect, admin, updateOrderToDelivered)
  
 module.exports = router
