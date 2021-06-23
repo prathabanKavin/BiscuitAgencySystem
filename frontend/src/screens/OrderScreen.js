@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import PaymentModal from '../components/PaymentModal'
-import { getOrderDetails, shipOrder, deliverOrder } from '../actions/orderActions'
-import { ORDER_SHIP_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants'
+import { getOrderDetails, payOrder, shipOrder, deliverOrder } from '../actions/orderActions'
+import { ORDER_PAY_RESET, ORDER_SHIP_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants'
 
 const OrderScreen = ({ match, history }) => {
     const orderId = match.params.id
@@ -17,6 +17,9 @@ const OrderScreen = ({ match, history }) => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
     const { order, loading, error } = orderDetails
+ 
+    const orderPay = useSelector(state => state.orderPay)
+    const { loading: loadingPay, success: successPay } = orderPay
 
     const orderShip = useSelector(state => state.orderShip)
     const { loading: loadingShip, success: successShip } = orderShip
@@ -47,13 +50,18 @@ const OrderScreen = ({ match, history }) => {
             document.body.appendChild(script)
         }
         addPayhereScript()
-        if(!order || successShip || successDeliver){
+        if(!order || successPay || successShip || successDeliver){
+            dispatch({ type: ORDER_PAY_RESET })
             dispatch({ type: ORDER_SHIP_RESET })
             dispatch({ type: ORDER_DELIVER_RESET })
             dispatch(getOrderDetails(orderId))
         }
-    }, [dispatch, orderId, order, successShip, successDeliver])
+    }, [dispatch, orderId, order,successPay, successShip, successDeliver])
 
+    const payHandler = () => {
+        dispatch(payOrder(order))
+    }
+    
     const shipHandler = () => {
         dispatch(shipOrder(order))
     }
@@ -166,8 +174,16 @@ const OrderScreen = ({ match, history }) => {
                                     />
                                     </ListGroup.Item>
                                     )}
+                                    {loadingPay && <Loader/>}
+                                    {userInfo && userInfo.isMainAdmin && !order.isPaid && (
+                                        <ListGroup.Item>
+                                            <Button type='button' className='btn btn-block' onClick={payHandler}>
+                                                Mark as Paid
+                                            </Button>
+                                        </ListGroup.Item>
+                                    )}
                                     {loadingShip && <Loader/>}
-                                    {userInfo.isMainAdmin && !order.isShipped && (
+                                    {userInfo && userInfo.isMainAdmin && !order.isShipped && (
                                         <ListGroup.Item>
                                             <Button type='button' className='btn btn-block' onClick={shipHandler}>
                                                 Mark as Shipped
@@ -175,7 +191,7 @@ const OrderScreen = ({ match, history }) => {
                                         </ListGroup.Item>
                                     )}
                                     {loadingDeliver && <Loader/>}
-                                    {userInfo.isMainAdmin && !order.isDelivered && (
+                                    {userInfo && userInfo.isMainAdmin && !order.isDelivered && (
                                         <ListGroup.Item>
                                             <Button type='button' className='btn btn-block' onClick={deliverHandler}>
                                                 Mark as Delivered
